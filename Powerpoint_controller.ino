@@ -1,13 +1,21 @@
 #include <Keyboard.h>
-const int buttonPin = 7;
-int buttonState = 0;
+const int buttonPinL = 7;
+const int buttonPinR = 6;
+int buttonStateL = 0;
+int buttonStateR = 0;
 void setup() {
-  pinMode(buttonPin, INPUT);
+  pinMode(buttonPinL, INPUT);
+  pinMode(buttonPinR, INPUT);
 }
 void loop() {
-  buttonState = digitalRead(buttonPin);
-  if (buttonState == HIGH) {
+  buttonStateL = digitalRead(buttonPinL);
+    buttonStateR = digitalRead(buttonPinR);
+  if (buttonStateL == HIGH) {
     Keyboard.write(' ');
     delay(500);
   }
-}                                            
+    if (buttonStateR == HIGH) {
+    Keyboard.write(8);
+    delay(500);
+  }
+}
