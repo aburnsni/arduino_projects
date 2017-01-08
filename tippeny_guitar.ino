@@ -18,6 +18,10 @@ int song[] = {CHORD_G, CHORD_Em, CHORD_C, CHORD_D,
               CHORD_Cm6_Eb, CHORD_B7, CHORD_E7, CHORD_Am9,
               CHORD_Am7b5_D, CHORD_D7, CHORD_D7add13, CHORD_Em7
              };  // chords needed in song
+int midiChannel[] = {1, 1, 1, 1,
+                     1, 1, 1, 1,
+                     1, 1, 1, 1
+                    }; // midi channel for each button
 
 // Charlieplex LED setup
 #define A 9
@@ -92,7 +96,7 @@ void loop() {
     // it if *is* touched and *wasnt* touched before, alert!
     if ((currtouched & _BV(i)) && !(lasttouched & _BV(i)) ) {
       turnOn(i);
-      playChord(song[i]);
+      playChord(song[i], midiChannel[i]);
     }
     if (!(currtouched & _BV(i)) && (lasttouched & _BV(i)) ) {
       turnOffLEDs();
@@ -106,10 +110,10 @@ void loop() {
   delay(50);
 }
 
-void playChord(int i[]) {
+void playChord(int i[], int channel) {
   for (uint8_t note = 0; note < 6; note++) {
     if (i[note]) {
-      MIDI.sendNoteOn((i[note]), 100, 1);
+      MIDI.sendNoteOn((i[note]), 100, channel);
       delay(strum);
     }
   }
