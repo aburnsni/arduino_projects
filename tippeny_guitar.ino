@@ -26,6 +26,11 @@ int midiChannel[] = {1, 1, 1, 1,
                      1, 1, 1, 1,
                      1, 1, 1, 1
                     }; // midi channel for each button
+int instruments[] = {26, 999, 999, 999,
+                     999, 999, 999, 999,
+                     999, 999 /*Drums*/, 999, 999,
+                     999, 999, 999, 999
+                    };  // instruments for each channel.  Setting to 999 prevents change
 
 // Charlieplex LED setup
 #define A 9
@@ -89,7 +94,11 @@ void setup() {
   delay(1000);
   MIDIsoftreset();
   delay(200);
-  MIDI.sendProgramChange(26, 1);
+  for (uint8_t i = 0; i < 16; i++) {
+  if (instruments[i] < 128) {
+      MIDI.sendProgramChange(instruments[i], i + 1);
+    }
+  }
 }
 
 void loop() {
