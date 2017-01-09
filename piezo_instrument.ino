@@ -67,7 +67,6 @@ void loop()
   }
 }
 
-
 void MIDIsoftreset()  // switch off ALL notes on channel 1 to 16
 {
   for (channel = 0; channel < 16; channel++)
@@ -76,7 +75,3 @@ void MIDIsoftreset()  // switch off ALL notes on channel 1 to 16
   }
 }
 
-struct MySettings : public midi::DefaultSettings
-{
-  static const long DefaultSettings::BaudRate = 115200;
-};
