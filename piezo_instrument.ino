@@ -5,7 +5,7 @@
 #include "midi_notes.h";
 
 // Constants
-#define DEBUG 1  // Debug more defaults to 9600 baud
+#define DEBUG 0  // Debug more defaults to 9600 baud
 #define PAD1 0
 #define SWITCH1 7
 #define LED1 13
@@ -36,27 +36,27 @@ void setup()
 void loop()
 {
   val = analogRead(PAD1);  // Read the voltage
-  if (val) {
-    Serial.println(val);
+  //  if (val) {
+  //    Serial.println(val);
+  //  }
+  note = floor((val * (NUMNOTES + 1)) / 254);
+  if (note > (NUMNOTES)) { // Sanity check
+    note = (NUMNOTES);
   }
-  //  note = floor((val * (NUMNOTES + 1)) / 254);
-  //  if (note > (NUMNOTES)) { // Sanity check
-  //    note = (NUMNOTES);
-  //  }
-  //  if ((note != last_note) && (note > 0)) {  // Prevent repeated notes and prevent playing with no touch
-  //    digitalWrite(LED1, HIGH);
-  //    if (DEBUG) {
-  //      Serial.println(scale[note - 1]); // print note for debugging subract one to account for array numbering
-  //      delay(300);
-  //    } else {
-  //      MIDI.sendNoteOn(scale[note - 1], 100, 1);
-  //      delay(300);
-  //      // Note off if required
-  //      // MIDI.sendNoteOff(scale[note-1],0,1);
-  //    }
-  //    digitalWrite(LED1, LOW);
-  //    last_note = note;
-  //  }
+  if ((note != last_note) && (note > 0)) {  // Prevent repeated notes and prevent playing with no touch
+    digitalWrite(LED1, HIGH);
+    if (DEBUG) {
+      Serial.println(scale[note - 1]); // print note for debugging subract one to account for array numbering
+      delay(300);
+    } else {
+      MIDI.sendNoteOn(scale[note - 1], 100, 1);
+      delay(300);
+      // Note off if required
+      // MIDI.sendNoteOff(scale[note-1],0,1);
+    }
+    digitalWrite(LED1, LOW);
+    last_note = note;
+  }
 
   buttonState = digitalRead(SWITCH1);  // Check for reset switch
   if (buttonState == HIGH)
