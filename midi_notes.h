@@ -124,7 +124,7 @@ const int CHORD_D7[] = {0, 0, NOTE_D3, NOTE_A3, NOTE_B3, NOTE_Gb4};
 const int CHORD_Dm[] = {0, 0, NOTE_D3, NOTE_A3, NOTE_D4, NOTE_F4};
 const int CHORD_D7add13[] = {0, NOTE_D3, NOTE_Gb3, NOTE_C4, NOTE_D4, NOTE_B4};
 const int CHORD_E7[] = {NOTE_E2, NOTE_B2, NOTE_E3, NOTE_Ab3, NOTE_D4, NOTE_E4};
-const int CHORD_Em[] = {NOTE_E2, NOTE_B2, NOTE_E3, NOTE_G3, NOTE_B4, NOTE_E4};
+const int CHORD_Em[] = {NOTE_E2, NOTE_B2, NOTE_E3, NOTE_G3, NOTE_B3, NOTE_E4};
 const int CHORD_Em7[] = {NOTE_E2, NOTE_B2, NOTE_E3, NOTE_G3, NOTE_D4, NOTE_E4};
 const int CHORD_F[] = {NOTE_F2, NOTE_C3, NOTE_F3, NOTE_A3, NOTE_C4, NOTE_F4};
 const int CHORD_F7[] = {NOTE_F2, NOTE_C3, NOTE_F3, NOTE_A3, NOTE_Eb4, NOTE_F4};
@@ -139,3 +139,7 @@ const int CHORD_Am7b5_D[] = {0, NOTE_D3, NOTE_A3, NOTE_Eb4, NOTE_G4, NOTE_C5};
 const int CHORD_B7[] = {0, NOTE_B2, NOTE_Eb3, NOTE_A3, NOTE_B3, NOTE_Gb4};
 const int CHORD_Bb7[] = {0, NOTE_Bb2, NOTE_F3, NOTE_Ab3, NOTE_D4, NOTE_F4};
 
+const int DRUM_BASS[] = {36, 0, 0, 0, 0, 0};
+const int DRUM_SIDE[] = {37, 0, 0, 0, 0, 0};
+const int CYM_1[] = {51, 0, 0, 0, 0, 0};
+const int CYM_2[] = {49, 0, 0, 0, 0, 0};
