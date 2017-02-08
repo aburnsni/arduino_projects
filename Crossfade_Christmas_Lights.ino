@@ -22,7 +22,7 @@ int ledDir[] = {1, 1, -1, 0, 0, 0};     // Assign initial direction to LEDs
 
 
 // Button setup
-const int buttonPin = 2;
+const int buttonPin = 13;
 int buttonState;             // the current reading from the input pin
 int lastButtonState = LOW;   // the previous reading from the input pin
 
@@ -58,13 +58,13 @@ void setup()
 
 // Main program
 void loop() {
-  //  buttonState = digitalRead(buttonPin);
-  //  if (buttonState == HIGH) {
-  //    patternNum++;
-  //    if (patternNum == 5) {
-  //      patternNum = 1;
-  //    }
-  //  }
+    buttonState = digitalRead(buttonPin);
+    if (buttonState == HIGH) {
+      patternNum++;
+      if (patternNum == 5) {
+        patternNum = 1;
+      }
+    }
 
   switch (patternNum) {
     case 1:
