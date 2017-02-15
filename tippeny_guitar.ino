@@ -57,7 +57,7 @@ int matrix[LED_COUNT][2][4] = {
   { { OUTPUT, INPUT, INPUT, OUTPUT }, { LOW, LOW, LOW, HIGH } }, // AD 10
   { { OUTPUT, INPUT, INPUT, OUTPUT }, { HIGH, LOW, LOW, LOW } }  // DA 11
 };
-void turnOn( int led ) {
+void turnOnLED( int led ) {
   pinMode( A, matrix[led][PIN_CONFIG][0] );
   pinMode( B, matrix[led][PIN_CONFIG][1] );
   pinMode( C, matrix[led][PIN_CONFIG][2] );
@@ -108,7 +108,7 @@ void loop() {
   for (uint8_t i = 0; i < 12; i++) {
     // it if *is* touched and *wasnt* touched before, alert!
     if ((currtouched & _BV(i)) && !(lasttouched & _BV(i)) ) {
-      turnOn(i);
+      turnOnLED(i);
       playChord(song[i], midiChannel[i]);
     }
     if (!(currtouched & _BV(i)) && (lasttouched & _BV(i)) ) {
