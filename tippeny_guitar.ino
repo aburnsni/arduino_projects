@@ -12,19 +12,23 @@ uint16_t lasttouched = 0;
 uint16_t currtouched = 0;
 
 // Change these only!!!
-const bool DEBUG = 0;
+const bool DEBUG = 1;
 int strum = 5;  // delay between each note of strum
 //int* song[] = {CHORD_G, CHORD_Em, CHORD_C, CHORD_D,
 //              CHORD_Cm6_Eb, CHORD_B7, CHORD_E7, CHORD_Am9,
 //              CHORD_Am7b5_D, CHORD_D7, CHORD_D7add13, CHORD_Em7
 //             };  // All I Want For Christmas is You
-int* song[] = {CHORD_C, CHORD_Am, CHORD_F, CHORD_G,
-               CHORD_Dm, CHORD_Em, CHORD_F7, CHORD_G7,
-               DRUM_BASS, DRUM_SIDE, CYM_1, CYM_2
-              };  // Simple Chords
+//int* song[] = {CHORD_C, CHORD_Am, CHORD_F, CHORD_G,
+//               CHORD_Dm, CHORD_Em, CHORD_F7, CHORD_G7,
+//               DRUM_BASS, DRUM_SIDE, CYM_1, CYM_2
+//              };  // Simple Chords
+int* song[] = {CHORD_E, CHORD_B, CHORD_B7, CHORD_Gbm,
+               CHORD_Gb, CHORD_E7, CHORD_A, CHORD_Dbm,
+               CHORD_Gbm, CHORD_Db, CYM_1, CYM_2
+              };  // Diamonds are a Girls Best Friend
 int midiChannel[] = {1, 1, 1, 1,
                      1, 1, 1, 1,
-                     10, 10, 10, 10
+                     1, 1, 10, 10
                     }; // midi channel for each button
 int instruments[] = {26, 999, 999, 999,
                      999, 999, 999, 999,
