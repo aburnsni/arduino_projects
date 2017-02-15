@@ -19,9 +19,9 @@ int strum = 5;  // delay between each note of strum
 //              CHORD_Am7b5_D, CHORD_D7, CHORD_D7add13, CHORD_Em7
 //             };  // All I Want For Christmas is You
 int* song[] = {CHORD_C, CHORD_Am, CHORD_F, CHORD_G,
-              CHORD_Dm, CHORD_Em, CHORD_F7, CHORD_G7,
-              DRUM_BASS, DRUM_SIDE, CYM_1, CYM_2
-             };  // Simple Chords
+               CHORD_Dm, CHORD_Em, CHORD_F7, CHORD_G7,
+               DRUM_BASS, DRUM_SIDE, CYM_1, CYM_2
+              };  // Simple Chords
 int midiChannel[] = {1, 1, 1, 1,
                      1, 1, 1, 1,
                      10, 10, 10, 10
@@ -92,10 +92,10 @@ void setup() {
     while (1);
   }
   delay(1000);
-  MIDIsoftreset();
+  MIDIsoftreset();  // Midi Reset
   delay(200);
-  for (uint8_t i = 0; i < 16; i++) {
-  if (instruments[i] < 128) {
+  for (uint8_t i = 0; i < 16; i++) {  // Set instruments for all 16 MIDI channels
+    if (instruments[i] < 128) {
       MIDI.sendProgramChange(instruments[i], i + 1);
     }
   }
