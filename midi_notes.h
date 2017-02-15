@@ -10,18 +10,18 @@
 //#define NOTE_A0 21
 //#define NOTE_Bb0 22 // A#
 //#define NOTE_B0 23
-//#define NOTE_C1 24
-//#define NOTE_Db1 25
-//#define NOTE_D1 26
-//#define NOTE_Eb1 27
-//#define NOTE_E1 28
-//#define NOTE_F1 29
-//#define NOTE_Gb1 30
-//#define NOTE_G1 31
-//#define NOTE_Ab1 32
-//#define NOTE_A1 33
-//#define NOTE_Bb1 34
-//#define NOTE_B1 35
+#define NOTE_C1 24
+#define NOTE_Db1 25
+#define NOTE_D1 26
+#define NOTE_Eb1 27
+#define NOTE_E1 28
+#define NOTE_F1 29
+#define NOTE_Gb1 30
+#define NOTE_G1 31
+#define NOTE_Ab1 32
+#define NOTE_A1 33
+#define NOTE_Bb1 34
+#define NOTE_B1 35
 #define NOTE_C2 36
 #define NOTE_Db2 37
 #define NOTE_D2 38
@@ -115,8 +115,8 @@
 //#define NOTE_Gb9 126
 //#define NOTE_G9 127
 
-int CHORD_Db[] = {0, NOTE_Ab2, NOTE_Db3, NOTE_Ab3, NOTE_Db4, NOTE_Db4};
-int CHORD_Eb[] = {NOTE_Eb2, NOTE_Bb2, NOTE_Eb3, NOTE_Ab3, NOTE_Bb3, NOTE_Db4};
-int CHORD_Ab[] = {NOTE_Eb2, NOTE_Ab2, NOTE_Eb3, NOTE_Ab3, NOTE_C4, NOTE_Db4};
-int CHORD_Fm[] = {NOTE_F2, NOTE_C3, NOTE_F3, NOTE_Ab3, NOTE_C4, 0};
+int CHORD_Db[] = {NOTE_Db2, NOTE_Db3, NOTE_Ab3, NOTE_Db4};
+int CHORD_Eb[] = {NOTE_Eb2, NOTE_Eb3, NOTE_Bb3, NOTE_Db4};
+int CHORD_Ab[] = {NOTE_Ab2, NOTE_Ab2, NOTE_Ab3, NOTE_C4};
+int CHORD_Fm[] = {NOTE_F2, NOTE_F2, NOTE_Ab3, NOTE_C4};
 
