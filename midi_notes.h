@@ -1,14 +1,14 @@
 //#define NOTE_C0 12
-//#define NOTE_Db0 13
+//#define NOTE_Db0 13 // C#
 //#define NOTE_D0 14
-//#define NOTE_Eb0 15
+//#define NOTE_Eb0 15 // D#
 //#define NOTE_E0 16
 //#define NOTE_F0 17
-//#define NOTE_Gb0 18
+//#define NOTE_Gb0 18 // F#
 //#define NOTE_G0 19
-//#define NOTE_Ab0 20
+//#define NOTE_Ab0 20 // G#
 //#define NOTE_A0 21
-//#define NOTE_Bb0 22
+//#define NOTE_Bb0 22 // A#
 //#define NOTE_B0 23
 //#define NOTE_C1 24
 //#define NOTE_Db1 25
