@@ -12,7 +12,7 @@ uint16_t lasttouched = 0;
 uint16_t currtouched = 0;
 
 // Change these only!!!
-const bool DEBUG = 1;
+const bool DEBUG = 0;
 int strum = 5;  // delay between each note of strum
 //int* song[] = {CHORD_G, CHORD_Em, CHORD_C, CHORD_D,
 //              CHORD_Cm6_Eb, CHORD_B7, CHORD_E7, CHORD_Am9,
