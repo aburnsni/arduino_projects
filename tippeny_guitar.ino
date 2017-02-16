@@ -24,7 +24,7 @@ int strum = 5;  // delay between each note of strum
 //              };  // Simple Chords
 int* song[] = {CHORD_E, CHORD_B, CHORD_B7, CHORD_Gbm,
                CHORD_Gb, CHORD_E7, CHORD_A, CHORD_Dbm,
-               CHORD_Gbm, CHORD_Db, 0, 0
+               CHORD_Gbm, CHORD_Db, CHORD_Am, 0
               };  // Diamonds are a Girls Best Friend
 // 0's in song prevent that key from sounding
 
