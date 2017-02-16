@@ -24,8 +24,10 @@ int strum = 5;  // delay between each note of strum
 //              };  // Simple Chords
 int* song[] = {CHORD_E, CHORD_B, CHORD_B7, CHORD_Gbm,
                CHORD_Gb, CHORD_E7, CHORD_A, CHORD_Dbm,
-               CHORD_Gbm, CHORD_Db, CYM_1, CYM_2
+               CHORD_Gbm, CHORD_Db, 0, 0
               };  // Diamonds are a Girls Best Friend
+// 0's in song prevent that key from sounding
+
 int midiChannel[] = {1, 1, 1, 1,
                      1, 1, 1, 1,
                      1, 1, 10, 10
@@ -112,11 +114,15 @@ void loop() {
   for (uint8_t i = 0; i < 12; i++) {
     // it if *is* touched and *wasnt* touched before, alert!
     if ((currtouched & _BV(i)) && !(lasttouched & _BV(i)) ) {
-      turnOnLED(i);
-      playChord(song[i], midiChannel[i]);
+      if (song[i]) {
+        turnOnLED(i);
+        playChord(song[i], midiChannel[i]);
+      }
     }
     if (!(currtouched & _BV(i)) && (lasttouched & _BV(i)) ) {
-      turnOffLEDs();
+      if (song[i]) {
+        turnOffLEDs();
+      }
     }
   }
 
