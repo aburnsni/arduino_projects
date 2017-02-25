@@ -12,31 +12,34 @@ uint16_t lasttouched = 0;
 uint16_t currtouched = 0;
 
 // Change these only!!!
-const bool DEBUG = 0;
-int strum = 5;  // delay between each note of strum
-//int* song[] = {CHORD_G, CHORD_Em, CHORD_C, CHORD_D,
-//              CHORD_Cm6_Eb, CHORD_B7, CHORD_E7, CHORD_Am9,
-//              CHORD_Am7b5_D, CHORD_D7, CHORD_D7add13, CHORD_Em7
-//             };  // All I Want For Christmas is You
-//int* song[] = {CHORD_C, CHORD_Am, CHORD_F, CHORD_G,
-//               CHORD_Dm, CHORD_Em, CHORD_F7, CHORD_G7,
-//               DRUM_BASS, DRUM_SIDE, CYM_1, CYM_2
-//              };  // Simple Chords
-int* song[] = {CHORD_E, CHORD_B, CHORD_B7, CHORD_Gbm,
-               CHORD_Gb, CHORD_E7, CHORD_A, CHORD_Dbm,
-               CHORD_Gbm, CHORD_Db, CHORD_Am, 0
-              };  // Diamonds are a Girls Best Friend
-// 0's in song prevent that key from sounding
+const bool DEBUG = 1;
 
-int midiChannel[] = {1, 1, 1, 1,
-                     1, 1, 1, 1,
-                     1, 1, 10, 10
-                    }; // midi channel for each button
-int instruments[] = {26, 999, 999, 999,
-                     999, 999, 999, 999,
-                     999, 999 /*Drums*/, 999, 999,
-                     999, 999, 999, 999
-                    };  // instruments for each channel.  Setting to 999 prevents change
+
+int strum = 5;  // delay between each note of strum
+
+// All I Want For Christmas is You
+//char style = 'c';   // Valid options = "n" for notes or "c" for chords
+//int* song[] = {CHORD_G, CHORD_Em, CHORD_C, CHORD_D, CHORD_Cm6_Eb, CHORD_B7, CHORD_E7, CHORD_Am9, CHORD_Am7b5_D, CHORD_D7, CHORD_D7add13, CHORD_Em7};
+//int midiChannel[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+//int instruments[] = {26, 999, 999, 999, 999, 999, 999, 999, 999, 999 /*Drums*/, 999, 999, 999, 999, 999, 999};
+
+// Simple Chords
+//char style = 'c';
+//int* song[] = {CHORD_C, CHORD_Am, CHORD_F, CHORD_G, CHORD_Dm, CHORD_Em, CHORD_F7, CHORD_G7, DRUM_BASS, DRUM_SIDE, CYM_1, CYM_2};  // 0's in song prevent that key from sounding
+//int midiChannel[] = {1, 1, 1, 1, 1, 1, 1, 1, 10, 10, 10, 10};  // MIDI channel 10 for drums
+//int instruments[] = {26, 999, 999, 999, 999, 999, 999, 999, 999, 999 /*Drums*/, 999, 999, 999, 999, 999, 999};  // instruments for each channel.  Setting to 999 prevents change
+
+// Diamonds are a Girls Best Friend
+//char style = 'c';
+//int* song[] = {CHORD_E, CHORD_B, CHORD_B7, CHORD_Gbm, CHORD_Gb, CHORD_E7, CHORD_A, CHORD_Dbm, CHORD_Gbm, CHORD_Db, CHORD_Am, 0}; 
+//int midiChannel[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+//int instruments[] = {26, 999, 999, 999, 999, 999, 999, 999, 999, 999 /*Drums*/, 999, 999, 999, 999, 999, 999};
+
+// C Major scale
+char style = 'n';
+int* song[] = {NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5};
+int midiChannel[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; // midi channel for each button
+int instruments[] = {102, 999, 999, 999, 999, 999, 999, 999, 999, 999 /*Drums*/, 999, 999, 999, 999, 999, 999};
 
 // Charlieplex LED setup
 #define A 9
@@ -116,15 +119,25 @@ void loop() {
     if ((currtouched & _BV(i)) && !(lasttouched & _BV(i)) ) {
       if (song[i]) {
         turnOnLED(i);
-        playChord(song[i], midiChannel[i]);
+        if (style == 'n') {
+          MIDI.sendNoteOn(song[i], 100, midiChannel[i]);
+        } else if (style == 'c' && song[i]) {
+          playChord(song[i], midiChannel[i]);
+        }
       }
     }
     if (!(currtouched & _BV(i)) && (lasttouched & _BV(i)) ) {
       if (song[i]) {
         turnOffLEDs();
+        if (style == 'n') {
+          MIDI.sendNoteOff(song[i], 100, midiChannel[i]);
+        } else if (style == 'c' && song[i]) {
+          //  Nothing to do
+        }
       }
     }
   }
+
 
   // reset our state
   lasttouched = currtouched;
