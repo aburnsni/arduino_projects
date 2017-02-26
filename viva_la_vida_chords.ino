@@ -10,7 +10,7 @@ Adafruit_MPR121 cap = Adafruit_MPR121();
 uint16_t lasttouched = 0;
 uint16_t currtouched = 0;
 
-const bool DEBUG = 0;
+const bool DEBUG = 1;
 int* song[] = {CHORD_Db, CHORD_Eb, CHORD_Ab, CHORD_Fm};
 //int duration = 500;
 int instrument = 50;
