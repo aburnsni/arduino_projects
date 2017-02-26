@@ -1,7 +1,6 @@
 #include <Wire.h>
 #include "Adafruit_MPR121.h"
 #include <MIDI.h>
-//#include <CapacitiveSensor.h>
 #include "midi_notes.h"
 
 // You can have up to 4 on one i2c bus but one is enough for testing!
