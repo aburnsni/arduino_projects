@@ -1,11 +1,9 @@
 #include <avr/sleep.h>
-//#include <avr/interrupt.h>  // For ATtiny85
+#include <avr/interrupt.h>
 
-//const int ledPin[] = {0, 1, 2, 4};  //ATtiny85 pins
-//const int tiltPin = 3;
+const int ledPin[] = {0, 1, 2, 4};
+const int tiltPin = 3;
 
-const int ledPin[] = {4, 5, 6, 7};
-const int tiltPin = 2;
 int buttonState;
 int previousButtonState;
 unsigned long previousThrowTime = 0;
@@ -18,7 +16,6 @@ void setup() {
     pinMode(ledPin[i], OUTPUT);
   }
   pinMode(tiltPin, INPUT);
-  attachInterrupt(0, wakeUpNow, HIGH);
 }
 
 void loop() {
@@ -85,39 +82,27 @@ void shuffle() {
 }
 
 void sleep() {
-  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
-  sleep_enable();
-  attachInterrupt(0, wakeUpNow, HIGH);
-  sleep_mode();
-  sleep_disable();
-  detachInterrupt(0);
+
+  GIMSK |= _BV(PCIE);                     // Enable Pin Change Interrupts
+  PCMSK |= _BV(PCINT3);                   // Use PB3 as interrupt pin
+  ADCSRA &= ~_BV(ADEN);                   // ADC off
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);    // replaces above statement
+
+  sleep_enable();                         // Sets the Sleep Enable bit in the MCUCR Register (SE BIT)
+  sei();                                  // Enable interrupts
+  sleep_cpu();                            // sleep
+
+  cli();                                  // Disable interrupts
+  PCMSK &= ~_BV(PCINT3);                  // Turn off PB3 as interrupt pin
+  sleep_disable();                        // Clear SE bit
+  ADCSRA |= _BV(ADEN);                    // ADC on
+
+  sei();                                  // Enable interrupts
+} // sleep
+
+ISR(PCINT0_vect) {
+  // This is called when the interrupt occurs, but I don't need to do anything in it
 }
 
-void wakeUpNow() {       // here the interrupt is handled after wakeup
-}
 
-
-//ATtiny85 sleep code
-//void sleep() {
-//
-//  GIMSK |= _BV(PCIE);                     // Enable Pin Change Interrupts
-//  PCMSK |= _BV(PCINT3);                   // Use PB3 as interrupt pin
-//  ADCSRA &= ~_BV(ADEN);                   // ADC off
-//  set_sleep_mode(SLEEP_MODE_PWR_DOWN);    // replaces above statement
-//
-//  sleep_enable();                         // Sets the Sleep Enable bit in the MCUCR Register (SE BIT)
-//  sei();                                  // Enable interrupts
-//  sleep_cpu();                            // sleep
-//
-//  cli();                                  // Disable interrupts
-//  PCMSK &= ~_BV(PCINT3);                  // Turn off PB3 as interrupt pin
-//  sleep_disable();                        // Clear SE bit
-//  ADCSRA |= _BV(ADEN);                    // ADC on
-//
-//  sei();                                  // Enable interrupts
-//} // sleep
-//
-//ISR(PCINT0_vect) {
-//  // This is called when the interrupt occurs, but I don't need to do anything in it
-//}
 
