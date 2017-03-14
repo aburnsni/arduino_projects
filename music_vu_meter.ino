@@ -7,7 +7,7 @@ int ledPin[] = {9, 10, 11, 12, 13, 14, 15};
 const int sampleWindow = 50; // Sample window width in mS (50 mS = 20Hz)
 unsigned int sample;
 int maxScale = 7;
-int amp = 32;
+int amp = 16;
 
 void setup()
 {
