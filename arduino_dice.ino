@@ -29,20 +29,20 @@ void loop() {
         digitalWrite(ledPin[0], HIGH);
         break;
       case 2:
-        digitalWrite(ledPin[1], HIGH);
+        digitalWrite(ledPin[3], HIGH);
         break;
       case 3:
         digitalWrite(ledPin[0], HIGH);
-        digitalWrite(ledPin[1], HIGH);
+        digitalWrite(ledPin[3], HIGH);
         break;
       case 4:
-        digitalWrite(ledPin[1], HIGH);
         digitalWrite(ledPin[2], HIGH);
+        digitalWrite(ledPin[3], HIGH);
         break;
       case 5:
         digitalWrite(ledPin[0], HIGH);
-        digitalWrite(ledPin[1], HIGH);
         digitalWrite(ledPin[2], HIGH);
+        digitalWrite(ledPin[3], HIGH);
         break;
       case 6:
         digitalWrite(ledPin[1], HIGH);
