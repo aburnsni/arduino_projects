@@ -1,3 +1,13 @@
+/**
+ * Copyright (c) 2017 Andrew Burns
+ * Licensed under The MIT License (MIT)
+ * License: ./LICENSE
+ * Filenames: arduino_dice.ino
+ * Board: ATtiny85
+ * Speed: 1MHz
+ * Programmer: Arduino as ISP
+ */
+
 #include <avr/sleep.h>
 #include <avr/interrupt.h>
 
