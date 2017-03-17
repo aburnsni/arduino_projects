@@ -7,13 +7,18 @@ int ledPin[] = {9, 10, 11, 12, 13, 14, 15};
 const int sampleWindow = 50; // Sample window width in mS (50 mS = 20Hz)
 unsigned int sample;
 int maxScale = 7;
-int amp = 16;
+int amp = 8;
 
 void setup()
 {
   Serial.begin(9600);
   for (int i; i < maxScale; i++ ) {
     pinMode(ledPin[i], OUTPUT);
+  }
+  for (int i = 0; i < maxScale; i++) {
+    digitalWrite(ledPin[i], HIGH);
+    delay(500);
+    digitalWrite(ledPin[i], LOW);
   }
 }
 
@@ -49,16 +54,17 @@ void loop()
   if (displayPeak > maxScale) {
     displayPeak = maxScale;
   }
-  flashLeds(displayPeak);
-  //  Serial.println(displayPeak);
-}
-
-void flashLeds(int numLeds) {
-  for (int i = 0; i < numLeds; i++) {
-    digitalWrite(ledPin[i], HIGH);
-  }
-  for (int i = numLeds; i < maxScale; i++) {
-    digitalWrite(ledPin[i], LOW);
+  if (displayPeak == 0) {
+    for (int i = 0; i < maxScale; i++) {
+      digitalWrite(ledPin[i], LOW);
+    }
+  } else {
+    for (int i = 0; i < displayPeak; i++) {
+      digitalWrite(ledPin[i], HIGH);
+    }
+    for (int i = displayPeak; i < maxScale; i++) {
+      digitalWrite(ledPin[i], LOW);
+    }
   }
 }
 
