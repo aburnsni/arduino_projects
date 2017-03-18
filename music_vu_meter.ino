@@ -50,7 +50,7 @@ void loop()
   peakToPeak = signalMax - signalMin;  // max - min = peak-peak amplitude
   peakToPeak = peakToPeak * amp;
   //  double volts = (peakToPeak * 5.0) / 1024;  // convert to volts
-  int displayPeak = map(peakToPeak, 0, 1023, 0, maxScale);
+  int displayPeak = map(peakToPeak, 100, 1023, 0, maxScale);
   if (displayPeak > maxScale) {
     displayPeak = maxScale;
   }
