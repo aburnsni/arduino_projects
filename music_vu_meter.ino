@@ -17,7 +17,12 @@ void setup()
   }
   for (int i = 0; i < maxScale; i++) {
     digitalWrite(ledPin[i], HIGH);
-    delay(500);
+    delay(200);
+    digitalWrite(ledPin[i], LOW);
+  }
+  for (int i = maxScale - 2; i >= 0; i--) {
+    digitalWrite(ledPin[i], HIGH);
+    delay(200);
     digitalWrite(ledPin[i], LOW);
   }
 }
