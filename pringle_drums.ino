@@ -71,8 +71,7 @@ void loop() {
     }
     else
     {
-      if ( v > vmax[ch] )
-        vmax[ch] = v;
+      if ( v > vmax[ch] ) vmax[ch] = v;
       counter[ch]++;
 
       if ( counter[ch] == CTR_NOTEON )
