@@ -35,6 +35,7 @@ static unsigned int CTR_NOTEOFF = CTR_NOTEON + 30; // Duration roughly 15ms
 // CTR_NOTEON+1 .. CTR_NOTEOFF -> note off
 
 
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -50,7 +51,7 @@ void setup() {
 
   }
 
-  MIDI_setup();
+  //MIDI_setup();
 }
 
 
