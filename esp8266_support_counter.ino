@@ -1,21 +1,11 @@
-#include <SPI.h>
-#include <cp437font.h>
-#include <LedMatrix.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 
 #include <ESP8266WiFi.h>
 // This library is already built in to the Arduino IDE
 
-char requests[3];
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-int CS_PIN = 0;    // CS pin of MAX7219 module
-
-int NUMBER_OF_DEVICES = 1;  //how many MAX7219 are connected
-
-LedMatrix ledMatrix = LedMatrix(NUMBER_OF_DEVICES, CS_PIN);
-
-//#include <LiquidCrystal_I2C.h> //This library you can add via Include Library > Manage Library >
-
-//LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 //const char* ssid = "ffwifi"; // put your router name
 //const char* password = "UpperMalon35";// put your password
@@ -45,23 +35,19 @@ void setup() {
   Serial.begin(115200);
   delay(100);
 
-  ledMatrix.init();
-  ledMatrix.setIntensity(4); // range is 0-15
-  ledMatrix.setText("Hi");
-
-  //  lcd.init();   // initializing the LCD
-  //  lcd.backlight(); // Enable or Turn On the backlight
-  //  delay(200);
-  //  lcd.noBacklight();
-  //  delay(200);
-  //  lcd.backlight(); // Enable or Turn On the backlight
-  //  delay(200);
-  //  lcd.noBacklight();
-  //  delay(200);
-  //  lcd.backlight(); // Enable or Turn On the backlight
-  //  delay(200);
-  //  lcd.noBacklight();
-  //  delay(200);
+  lcd.init();   // initializing the LCD
+  lcd.backlight(); // Enable or Turn On the backlight
+  delay(200);
+  lcd.noBacklight();
+  delay(200);
+  lcd.backlight(); // Enable or Turn On the backlight
+  delay(200);
+  lcd.noBacklight();
+  delay(200);
+  lcd.backlight(); // Enable or Turn On the backlight
+  delay(200);
+  lcd.noBacklight();
+  delay(200);
 
   // We start by connecting to a WiFi network
 
@@ -114,27 +100,16 @@ void loop() {
 
     int start_loc = find_text("<html>", line, 0);
     int end_loc = find_text("</html>", line, 0);
-    //    lcd.setCursor(0, 0);
+    lcd.setCursor(0, 0);
     if (start_loc > 0 && end_loc > 0)
     {
       //      Serial.println("subs:  ");
-      //      lcd.print("subs: ");
-      int j = 0;
+      lcd.print("Jobs: ");
       for (int i = start_loc + 6; i < end_loc; i++)
       {
-        // Serial.print(line[i]);
-        requests[j] = line[i];
-        j++;
-        //        lcd.print(line[i]);
+        Serial.print(line[i]);
+        lcd.print(line[i]);
       }
-
-      Serial.println(requests);
-
-      ledMatrix.setNextText(requests);
-      //ledMatrix.clear();
-      ledMatrix.scrollTextLeft();
-      ledMatrix.drawText();
-      ledMatrix.commit();
 
 
       //      Serial.println("");
@@ -161,26 +136,26 @@ void loop() {
 
   delay(refresh);
 
-  //  lcd.noBacklight();
-  //  delay(1000);
-  //  lcd.backlight(); // Enable or Turn On the backlight
-  //  delay(800);
-  //
-  //  lcd.noBacklight();
-  //  delay(500);
-  //  lcd.backlight(); // Enable or Turn On the backlight
-  //  delay(400);
-  //
-  //  lcd.noBacklight();
-  //  delay(300);
-  //  lcd.backlight(); // Enable or Turn On the backlight
-  //  delay(150);
-  //  lcd.noBacklight();
-  //  delay(100);
-  //  lcd.backlight(); // Enable or Turn On the backlight
-  //  delay(100);
-  //  lcd.noBacklight();
-  //  delay(50);
-  //  lcd.backlight(); // Enable or Turn On the backlight
-  //  delay(50);
+  lcd.noBacklight();
+  delay(1000);
+  lcd.backlight(); // Enable or Turn On the backlight
+  delay(800);
+
+  lcd.noBacklight();
+  delay(500);
+  lcd.backlight(); // Enable or Turn On the backlight
+  delay(400);
+
+  lcd.noBacklight();
+  delay(300);
+  lcd.backlight(); // Enable or Turn On the backlight
+  delay(150);
+  lcd.noBacklight();
+  delay(100);
+  lcd.backlight(); // Enable or Turn On the backlight
+  delay(100);
+  lcd.noBacklight();
+  delay(50);
+  lcd.backlight(); // Enable or Turn On the backlight
+  delay(50);
 }
