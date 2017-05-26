@@ -7,16 +7,16 @@
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 
-//const char* ssid = "ffwifi"; // put your router name
-//const char* password = "UpperMalon35";// put your password
+const char* ssid = "ffwifi"; // put your router name
+const char* password = "UpperMalon35";// put your password
 
-const char* ssid = "BTHub3-RZ6S"; // put your router name
-const char* password = "b9e6b63763";// put your password
+//const char* ssid = "BTHub3-RZ6S"; // put your router name
+//const char* password = "b9e6b63763";// put your password
 
 const char* host = "support.flemingfulton.org.uk";
 const char* url = "/node/14?tca=4ezZx6G1a00khifZ87eQzQfqN9uAew47G-ybgmL8aUI";
 
-const int refresh = 5000;
+const int refresh = 60000;
 
 int find_text(String needle, String haystack, int from) {
   int foundpos = -1;
@@ -38,16 +38,6 @@ void setup() {
   lcd.init();   // initializing the LCD
   lcd.backlight(); // Enable or Turn On the backlight
   delay(200);
-  lcd.noBacklight();
-  delay(200);
-  lcd.backlight(); // Enable or Turn On the backlight
-  delay(200);
-  lcd.noBacklight();
-  delay(200);
-  lcd.backlight(); // Enable or Turn On the backlight
-  delay(200);
-  lcd.noBacklight();
-  delay(200);
 
   // We start by connecting to a WiFi network
 
@@ -55,12 +45,25 @@ void setup() {
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
+  lcd.setCursor(0, 0);
+  lcd.print("Connecting");
 
+  WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
+  int i = 4;
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
+    if (i < 4) {
+      lcd.setCursor(10 + i, 0);
+      lcd.print (".");
+      i++;
+    } else {
+      lcd.setCursor(10, 0);
+      lcd.print ("    ");
+      i = 0;
+    }
   }
 
   Serial.println("");
@@ -81,6 +84,10 @@ void loop() {
   const int httpPort = 80;
   if (!client.connect(host, httpPort)) {
     Serial.println("connection failed");
+    lcd.clear();
+    lcd.print("Connection");
+    lcd.setCursor(0, 1);
+    lcd.print("Failed");
 
   }
 
@@ -110,8 +117,12 @@ void loop() {
         Serial.print(line[i]);
         lcd.print(line[i]);
       }
+      lcd.print("          ");
 
-
+      lcd.setCursor(0, 1);
+      for (int i = 0; i < 16; i++) {
+        lcd.print(" ");
+      }
       //      Serial.println("");
       //      lcd.setCursor(0, 1);
       //      int start_loc2 = find_text("<b>", line, end_loc + 1);
@@ -134,28 +145,18 @@ void loop() {
   Serial.println();
   Serial.println("closing connection");
 
-  delay(refresh);
-
+  delay(10000);
+  lcd.noBacklight();
+  delay(refresh - 10000);
+  lcd.backlight();
+  delay(1000);
   lcd.noBacklight();
   delay(1000);
   lcd.backlight(); // Enable or Turn On the backlight
   delay(800);
-
   lcd.noBacklight();
   delay(500);
   lcd.backlight(); // Enable or Turn On the backlight
   delay(400);
-
-  lcd.noBacklight();
-  delay(300);
-  lcd.backlight(); // Enable or Turn On the backlight
-  delay(150);
-  lcd.noBacklight();
-  delay(100);
-  lcd.backlight(); // Enable or Turn On the backlight
-  delay(100);
-  lcd.noBacklight();
-  delay(50);
-  lcd.backlight(); // Enable or Turn On the backlight
-  delay(50);
 }
+
