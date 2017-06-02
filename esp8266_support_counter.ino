@@ -127,7 +127,7 @@ void updateJobs() {
           Serial.print(line[i]);
           lcd.print(line[i]);
         }
-        //      lcd.print("          ");
+              lcd.print("   ");
 
         //        lcd.setCursor(0, 1);
         //        for (int i = 0; i < 16; i++) {
@@ -137,7 +137,7 @@ void updateJobs() {
         int start_loc2 = find_text("<urgent>", line, end_loc + 1);
         int end_loc2 = find_text("</urgent>", line, end_loc + 1);
 
-        lcd.setCursor(8, 0);
+        lcd.setCursor(9, 0);
         if (start_loc2 > 0 && end_loc2 > 0)
         {
           Serial.println("Urgent:");
