@@ -165,6 +165,15 @@ void updateTime() {
     lcd.setCursor(0, 1);
     time_t t = time(NULL);
     lcd.print(ctime(&t));
+
+    int hour = localtime(&t)->tm_hour;
+    if (hour < 8 or hour > 17) {
+      lcd.noBacklight();
+    } else {
+      lcd.backlight();
+    }
+//    Serial.print("Hour: ");
+//    Serial.println(hour);
     previousTimeMillis = currentMillis;
   }
 }
