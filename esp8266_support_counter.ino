@@ -3,15 +3,9 @@
 
 #include <ESP8266WiFi.h>
 // This library is already built in to the Arduino IDE
+#include "wifisettings.h"
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-
-
-const char* ssid = "ffwifi"; // put your router name
-const char* password = "UpperMalon35";// put your password
-
-//const char* ssid = "BTHub3-RZ6S"; // put your router name
-//const char* password = "b9e6b63763";// put your password
 
 const char* host = "support.flemingfulton.org.uk";
 const char* url = "/node/14?tca=4ezZx6G1a00khifZ87eQzQfqN9uAew47G-ybgmL8aUI";
