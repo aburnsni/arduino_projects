@@ -11,8 +11,9 @@
 MPU6050 mpu;
 
 //Define MIDI stuff
-#define NUMNOTES 13
-int scale[(NUMNOTES)] = {C3, Eb3, F3, Gb3, G3, Bb3, C4, Eb4, F4, Gb4, G4, Bb4, C5};
+#define NUMNOTES 15
+//int scale[(NUMNOTES)] = {C3, Eb3, F3, Gb3, G3, Bb3, C4, Eb4, F4, Gb4, G4, Bb4, C5};
+int scale[(NUMNOTES)] = {A3, E3, Gb3, A3, D3, A3, E3, Gb3, A3, D3, A3, E3, Gb3, A3, D3};
 int instrument = 26;  // Midi instrument
 byte note = 0;
 byte last_note = 0;
@@ -133,20 +134,23 @@ void loop() {
     //    Serial.print(",");
     //    Serial.print(euler[1] * 180 / M_PI);
     //    Serial.print(",");
-    //    Serial.println(euler[2] * 180 / M_PI);
-    byte val = (euler[2] * 180 / M_PI) + 180;
-    //  Play MIDI note
-    note = floor((val * (NUMNOTES + 1)) / 254);
+    //    Serial.println(abs(euler[2] * 100 / M_PI));
+
+
+
+    float val = abs(euler[2] * 100 / M_PI);
+    //    //  Play MIDI note
+    note = floor((val * (NUMNOTES + 1)) / 100);
     if (note > (NUMNOTES)) { // Sanity check
       note = (NUMNOTES);
     }
     if ((note != last_note) && (note > 0)) {  // Prevent repeated notes and prevent playing with no touch
-
+      //Serial.println(note);
       MIDI.sendNoteOn(scale[note - 1], 100, 1);
       delay(300);
       // Note off if required
-      // MIDI.sendNoteOff(scale[note-1],0,1);
-
+      MIDI.sendNoteOff(scale[note - 1], 0, 1);
+      //
       last_note = note;
     }
 
