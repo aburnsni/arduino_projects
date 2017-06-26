@@ -11,11 +11,11 @@ void loop() {
   buttonStateL = digitalRead(buttonPinL);
     buttonStateR = digitalRead(buttonPinR);
   if (buttonStateL == HIGH) {
-    Keyboard.write(' ');
+    Keyboard.write(KEY_RIGHT_ARROW);
     delay(500);
   }
     if (buttonStateR == HIGH) {
-    Keyboard.write(8);
+    Keyboard.write(KEY_LEFT_ARROW);
     delay(500);
   }
 }
