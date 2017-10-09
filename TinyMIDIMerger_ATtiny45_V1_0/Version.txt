@@ -1,0 +1,5 @@
+Tiny MIDI Merger Firmware V1.0 may 7th 2010
+Created by L.Schelling
+
+Visit my site at http://organix.inque.org
+Please report bugs or suggestions to organix@inque.org
