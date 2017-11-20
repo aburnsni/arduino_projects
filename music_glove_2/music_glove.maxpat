@@ -38,13 +38,38 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "float" ],
+					"patching_rect" : [ 572.5, 577.0, 29.5, 22.0 ],
+					"style" : "",
+					"text" : "/ 4."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "float" ],
+					"patching_rect" : [ 500.5, 577.0, 29.5, 22.0 ],
+					"style" : "",
+					"text" : "/ 4."
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-9",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 611.0, 621.0, 68.0, 22.0 ],
-					"presentation_rect" : [ 611.0, 622.0, 0.0, 0.0 ],
 					"style" : "",
 					"text" : "cycle~ 440"
 				}
@@ -58,7 +83,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 521.0, 621.0, 68.0, 22.0 ],
-					"presentation_rect" : [ 521.0, 621.0, 0.0, 0.0 ],
 					"style" : "",
 					"text" : "cycle~ 440"
 				}
@@ -484,6 +508,20 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-16", 0 ],
 					"source" : [ "obj-15", 0 ]
 				}
@@ -579,7 +617,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-7", 0 ],
+					"destination" : [ "obj-12", 0 ],
 					"source" : [ "obj-25", 0 ]
 				}
 
@@ -666,7 +704,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-9", 0 ],
+					"destination" : [ "obj-13", 0 ],
 					"source" : [ "obj-52", 0 ]
 				}
 
@@ -734,10 +772,10 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-48::obj-55" : [ "DSP", "DSP", 0 ],
+			"obj-48::obj-52" : [ "Level", "Level", 0 ],
 			"obj-48::obj-22" : [ "Mute[3]", "Mute", 0 ],
 			"obj-48::obj-56" : [ "OutputChannel", "OutputChannel", 0 ],
-			"obj-48::obj-52" : [ "Level", "Level", 0 ]
+			"obj-48::obj-55" : [ "DSP", "DSP", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
