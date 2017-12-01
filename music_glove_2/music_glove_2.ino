@@ -5,7 +5,7 @@
 #include <Wire.h>
 const int numReadings = 10;
 const int MPU_addr = 0x68;                                    // I2C address of the MPU-6050
-int32_t AcX[numReadings], AcY[numReadings], AcZ[numReadings]; // Max Ac value = 32767
+int32_t AcX[numReadings], AcY[numReadings], AcZ[numReadings]; 
 int32_t AcXtotal, AcYtotal, AcZtotal;
 int32_t AcXav, AcYav, AcZav;
 int readIndex = 0; // the index of the current reading
