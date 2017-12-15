@@ -8,11 +8,11 @@ static void MIDI_setup();
 static void MIDI_noteOn(int ch, int note, int velocity);
 static void MIDI_noteOff(int ch, int note);
 
-const int MIDI_CHANNEL = 1;
+const int MIDI_CHANNEL = 10;
 
 const int NCHANNELS = 4;
 const int inPins[NCHANNELS] = { A0, A1, A2, A3 };
-const int ledPins[NCHANNELS] = { 3, 5, 6, 9 };
+const int ledPins[NCHANNELS] = { 6, 5, 4, 3 };
 const int midiNotes[NCHANNELS] =
 {
   // Follows General MIDI specs at https://www.midi.org/specifications/item/gm-level-1-sound-set
@@ -51,7 +51,7 @@ void setup() {
 
   }
 
-  //MIDI_setup();
+  MIDI_setup();
 }
 
 
